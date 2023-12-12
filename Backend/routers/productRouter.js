@@ -1,5 +1,5 @@
 const express = require('express');
-const Model = require('../models/userModel');
+const Model = require('../models/productModel');
 
 // creating a router
 const router = express.Router();
@@ -12,7 +12,7 @@ router.post('/add', (req, res) => {
         res.json(result);
     }).catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.json(err);
     });
 });
 
@@ -28,51 +28,49 @@ router.get('/getall', (req, res) => {
 });
 
 // : denotes url parameter
-router.get('/getbylocation/:location', (req, res) => {
-    console.log(req.params.location);
-    Model.find({ location : req.params.location  })
+router.get('/getbyproduct/:product', (req, res) => {
+    console.log(req.params.product);
+    Model.find({ product : req.params.product  })
     .then((result) => {
         res.json(result);
     }).catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.json(err);
     });
 })
 
-router.get('/getbyemail/:email', (req, res) => {
-
-    Model.findOne({ email : req.params.email })
+router.get('/getbytype/:type', (req, res) => {
+    Model.findOne({ type : req.params.type })
     .then((result) => {
         res.json(result);
     }).catch((err) => {
         console.log(err);
-        res.status(500).json(err);
-    });
+        res.json(err);
+    }); 
 });
 
-router.get('/getbyid/:id', (req, res) => {
-    Model.findById(req.params.id)
+router.get('/getbyprice/:price', (req, res) => {
+    console.log(req.params.price);
+    Model.find({ price : req.params.price  })
     .then((result) => {
         res.json(result);
     }).catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.json(err);
     });
-});
 
-router.get('/update', (req, res) => {
-    res.send('Response from get all users route');
 });
-
-router.delete('/delete/:id', (req, res) => {
-    
-    Model.findByIdAndDelete(req.params.id)
+router.get('/getbycolour/:color', (req, res) => {
+    console.log(req.params.color);
+    Model.find({ price : req.params.color  })
     .then((result) => {
         res.json(result);
     }).catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.json(err);
     });
+
 });
+
 
 module.exports = router;

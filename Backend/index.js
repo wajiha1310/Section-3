@@ -1,6 +1,7 @@
 const express =require('express');
 const UserRouter=require("./routers/userRouter");
-
+const ProductRouter=require("./routers/productRouter");
+const cors=require('cors');
 const port=5000;
 
 // initialize express app
@@ -9,7 +10,12 @@ const app=express();
 
 // middleware
 app.use(express.json());
+app.use(cors({
+    origin:['http://localhost:5173']
+}));
+
 app.use('/user',UserRouter);
+app.use('/product',ProductRouter);
 
 app.get('/',(req,res)=>{
     res.send('Response from express server');
