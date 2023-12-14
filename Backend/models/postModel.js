@@ -1,9 +1,9 @@
 const {model,Schema} =require('../connection');
 // schema is a variable
 const mySchema=new Schema({
-    like:integer,
+    like:string,
     comment:String,
-    share:integer,
+    share:string,
   
 });
 // creating model and exporting
